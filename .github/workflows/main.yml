@@ -38,7 +38,12 @@ jobs:
       run: |
         flake8 src tests --max-line-length=120
 
-    # Step 6: Run the unit tests to mathematically prove the pipeline works
+   # Step 6: Run the unit tests to mathematically prove the pipeline works
     - name: Run unit tests
+      env:
+        # This securely injects the secrets into the runner environment
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
       run: |
         pytest tests/ -v
