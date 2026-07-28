@@ -11,7 +11,7 @@ class Config:
     # Using a base URL allows us to easily swap out OpenAI for local models 
     # (like vLLM or Ollama) or other compatible APIs.
     LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
-    MODEL_NAME = os.getenv("MODEL_NAME", "llama3-8b-8192")
+    MODEL_NAME = os.getenv("MODEL_NAME", "llama-3.1-8b-instant")
     
     @classmethod
     def validate(cls):
