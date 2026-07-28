@@ -6,8 +6,10 @@ from src.utils.logger import setup_logger
 logger = setup_logger("API")
 app = FastAPI(title="AI Agent Pipeline API")
 
+
 class QueryRequest(BaseModel):
     query: str
+
 
 @app.post("/api/v1/plan")
 async def create_plan(request: QueryRequest):
@@ -20,6 +22,7 @@ async def create_plan(request: QueryRequest):
     except Exception as e:
         logger.error(f"API Error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.get("/health")
 async def health_check():
