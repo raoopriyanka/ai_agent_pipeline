@@ -1,14 +1,15 @@
 import tiktoken
 from src.core.config import Config
 
+
 def count_tokens(text: str, model_name: str = Config.MODEL_NAME) -> int:
     """
     Calculates the exact number of tokens a string will consume.
-    
+
     Args:
         text (str): The input text to tokenize.
         model_name (str): The model encoding to use.
-        
+
     Returns:
         int: The number of tokens.
     """
@@ -19,8 +20,9 @@ def count_tokens(text: str, model_name: str = Config.MODEL_NAME) -> int:
         # Fallback encoding if the model is not explicitly recognized by tiktoken
         print(f"Warning: Model {model_name} not found. Using default encoding.")
         encoding = tiktoken.get_encoding("cl100k_base")
-        
+
     return len(encoding.encode(text))
+
 
 # Simple execution block for manual testing
 if __name__ == "__main__":

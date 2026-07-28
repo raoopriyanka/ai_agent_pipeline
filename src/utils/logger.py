@@ -2,6 +2,7 @@ import logging
 import os
 from datetime import datetime
 
+
 def setup_logger(name: str) -> logging.Logger:
     """
     Configures a production-ready logger.
@@ -9,19 +10,19 @@ def setup_logger(name: str) -> logging.Logger:
     """
     # Ensure the logs directory exists
     os.makedirs("logs", exist_ok=True)
-    
+
     # Create a log file stamped with today's date
     log_filename = f"logs/workflow_{datetime.now().strftime('%Y%m%d')}.log"
 
     logger = logging.getLogger(name)
-    
+
     # Prevent duplicate logs if the logger is instantiated multiple times
     if not logger.handlers:
         logger.setLevel(logging.DEBUG)
 
         # Standardize the log format
         formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+            "%(asctime)s - %(name)s - [%(levelname)s] - %(message)s"
         )
 
         # File Handler (Captures everything, including granular debug traces)
