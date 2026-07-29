@@ -11,6 +11,19 @@ class QueryRequest(BaseModel):
     query: str
 
 
+# --- ADD THIS NEW ROUTE ---
+@app.get("/", response_class=HTMLResponse)
+async def root():
+    """Serve the landing dashboard."""
+    html_path = Path("src/templates/index.html")
+    if html_path.exists():
+        return html_path.read_text(encoding="utf-8")
+    return "<h1>Dashboard Loading...</h1>"
+
+
+# --------------------------
+
+
 @app.post("/api/v1/plan")
 async def create_plan(request: QueryRequest):
     """Endpoint to generate an AI plan based on a user query."""
