@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from src.agents.planner import PlannerAgent
@@ -28,15 +29,29 @@ async def root():
 # --------------------------
 @app.get("/logs", response_class=PlainTextResponse)
 async def view_logs():
-    """Endpoint to view the live production logs."""
-    # Dynamically generate today's filename to match setup_logger
-    current_date = datetime.now().strftime("%Y%m%d")
-    log_filename = f"logs/workflow_{current_date}.log"
-    log_path = Path(log_filename)
+    """Endpoint to view the live production logs, bypassing timezone issues."""
+    log_dir = Path("logs")
 
-    if log_path.exists():
-        return log_path.read_text(encoding="utf-8")
-    return f"No logs found yet at {log_filename}. Try running a demo first!"
+    # 1. Check if the directory exists
+    if not log_dir.exists():
+        return "Logs directory does not exist yet."
+
+    # 2. Find all .log files in the directory
+    log_files = list(log_dir.glob("*.log"))
+
+    # 3. Check if any log files were found
+    if not log_files:
+        return (
+            "No logs found yet. Try clicking 'Run Demo' first to generate some traffic!"
+        )
+
+    # 4. Grab the most recently modified log file (completely ignores the date name)
+    latest_log = max(log_files, key=os.path.getctime)
+
+    try:
+        return latest_log.read_text(encoding="utf-8")
+    except Exception as e:
+        return f"Error reading log file: {str(e)}"
 
 
 @app.post("/api/v1/plan")
