@@ -2,67 +2,97 @@
 
 > A production-inspired multi-agent AI pipeline demonstrating **token optimization, autonomous error recovery, schema validation, and CI/CD deployment** using **FastAPI**, **GitHub Actions**, and modern LLM engineering practices.
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
-![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-success)
-![Pytest](https://img.shields.io/badge/Tested-Pytest-orange)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-2088FF?logo=githubactions&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-Tested-0A9EDC?logo=pytest&logoColor=white)
+![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?logo=render&logoColor=white)
+
+---
+
+# 🌐 Live Demo
+
+**Dashboard**
+
+https://ai-agent-pipeline-dbky.onrender.com/
+
+**Swagger Documentation**
+
+https://ai-agent-pipeline-dbky.onrender.com/docs
+
+**GitHub Repository**
+
+https://github.com/raoopriyanka/ai_agent_pipeline
 
 ---
 
 # 📖 Overview
 
-Large Language Model (LLM) applications often face three major production challenges:
+Large Language Model (LLM) applications often face several production challenges:
 
-* High token usage leading to increased API costs and latency
-* Unreliable model outputs such as malformed JSON or hallucinated fields
-* Lack of automated testing and deployment workflows
+- Excessive prompt sizes leading to high API costs
+- Increased inference latency
+- Malformed or inconsistent model outputs
+- Lack of automated validation and deployment workflows
 
-This project demonstrates how these issues can be addressed through a **fault-tolerant multi-agent architecture** that emphasizes reliability, scalability, and cost efficiency.
+This project demonstrates how these problems can be solved through a **fault-tolerant multi-agent architecture** emphasizing **cost efficiency**, **reliability**, and **production readiness**.
 
-The system includes:
+The pipeline includes:
 
-* 🤖 Planner Agent for task orchestration
-* ✅ Validator Agent for schema verification
-* 🔄 Automatic retry mechanism with exponential backoff
-* 📉 Token optimization strategies
-* ⚡ FastAPI REST API
-* 🧪 Automated testing with Pytest
-* 🚀 Continuous Integration using GitHub Actions
+- 🤖 Planner Agent
+- ✅ Validator Agent
+- 🔄 Automatic retry mechanism
+- 📉 Token optimization
+- ⚡ FastAPI REST API
+- 🧪 Automated testing
+- 🚀 GitHub Actions CI/CD
+
+---
+
+# 📸 Dashboard
+
+The deployed FastAPI application provides a lightweight dashboard summarizing the pipeline capabilities and optimization metrics.
+
+<p align="center">
+<img src="screenshots/dashboard.png" width="900">
+</p>
 
 ---
 
 # ✨ Features
 
-## AI Pipeline
+## 🤖 AI Pipeline
 
-* Multi-agent workflow
-* Structured JSON responses
-* Schema validation
-* Autonomous retry loop
-* Production-style logging
+- Multi-agent workflow
+- Structured JSON generation
+- Schema validation
+- Automatic retry loop
+- Production logging
 
-## Token Optimization
+## 📉 Token Optimization
 
-* Top-K Retrieval Filtering
-* Sliding/Windowed Context
-* Context window management
-* Token counting utilities
+- Top-K Retrieval Filtering
+- Sliding Context Window
+- Token counting utilities
+- Context window management
 
-## Reliability
+## 🛡️ Reliability
 
-* Handles malformed JSON
-* Automatic retries
-* Exponential backoff
-* API timeout handling
-* Exception-safe execution
+- Malformed JSON detection
+- Schema validation
+- Automatic retries
+- Exponential backoff
+- Timeout handling
+- Exception-safe execution
 
-## Deployment
+## 🚀 Deployment
 
-* FastAPI REST API
-* GitHub Actions CI
-* Automated testing
-* Code formatting
-* Static analysis
+- FastAPI REST API
+- GitHub Actions CI
+- Render deployment
+- Automated testing
+- Static analysis
+- Code formatting
 
 ---
 
@@ -70,20 +100,22 @@ The system includes:
 
 ```mermaid
 graph TD
-    A[User Request] --> B[FastAPI API]
 
-    B --> C[Planner Agent]
+A[User Request] --> B[FastAPI API]
 
-    C --> D[LLM Provider]
-    D --> E[Validator Agent]
+B --> C[Planner Agent]
 
-    E -->|Valid JSON| F[Optimized Response]
+C --> D[LLM Provider]
 
-    E -->|Invalid JSON| G[Retry Manager]
+D --> E[Validator Agent]
 
-    G --> H[Exponential Backoff]
+E -->|Valid JSON| F[Optimized Response]
 
-    H --> C
+E -->|Invalid JSON| G[Retry Manager]
+
+G --> H[Exponential Backoff]
+
+H --> C
 ```
 
 ---
@@ -93,9 +125,13 @@ graph TD
 ```text
 ai_agent_pipeline/
 │
+├── screenshots/
+│   ├── dashboard.png
+│   └── optimization-results.png
+│
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
+│       └── main.yml
 │
 ├── src/
 │   ├── agents/
@@ -109,10 +145,12 @@ ai_agent_pipeline/
 │   ├── optimization/
 │   │   ├── token_counter.py
 │   │   ├── retrieval_filter.py
-│   │   └── context_window.py
+│   │   ├── context_window.py
+│   │   └── token_manager.py
 │   │
 │   ├── utils/
-│   │   └── logger.py
+│   │   ├── logger.py
+│   │   └── tokenizer.py
 │   │
 │   └── main.py
 │
@@ -127,7 +165,7 @@ ai_agent_pipeline/
 
 # ⚙️ Installation
 
-## Clone the repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/raoopriyanka/ai_agent_pipeline.git
@@ -135,15 +173,9 @@ git clone https://github.com/raoopriyanka/ai_agent_pipeline.git
 cd ai_agent_pipeline
 ```
 
-## Create a virtual environment
+---
 
-### Linux / macOS
-
-```bash
-python -m venv venv
-
-source venv/bin/activate
-```
+## Create Virtual Environment
 
 ### Windows
 
@@ -153,7 +185,17 @@ python -m venv venv
 .\venv\Scripts\activate
 ```
 
-## Install dependencies
+### Linux/macOS
+
+```bash
+python -m venv venv
+
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -163,9 +205,7 @@ pip install -r requirements.txt
 
 # 🔑 Environment Variables
 
-Create a `.env` file from `.env.example`.
-
-Example:
+Create a `.env` file.
 
 ```env
 OPENAI_API_KEY=your_api_key
@@ -175,25 +215,23 @@ GROQ_API_KEY=your_api_key
 
 ---
 
-# ▶️ Run the API
+# ▶️ Running the API
 
 ```bash
 uvicorn src.main:app --reload
 ```
 
-Open:
+Open
 
 ```
 http://127.0.0.1:8000/docs
 ```
 
-to access the interactive Swagger documentation.
+for interactive Swagger documentation.
 
 ---
 
-# 🧪 Testing
-
-Run the complete test suite:
+# 🧪 Running Tests
 
 ```bash
 pytest tests -v
@@ -201,91 +239,122 @@ pytest tests -v
 
 ---
 
-# 🚀 Continuous Integration
+# 📉 Token Optimization Results
 
-Every push to the **main** branch automatically triggers GitHub Actions.
+The optimization module combines **Top-K Retrieval Filtering** with **Sliding Context Windowing** to dramatically reduce unnecessary prompt tokens while preserving response quality.
 
-The pipeline performs:
+| Metric | Before Optimization | After Optimization |
+|---------|--------------------:|-------------------:|
+| Prompt Tokens | **88,261** | **398** |
+| Token Reduction | — | **99.55%** |
+| Estimated API Cost | **$0.4413** | **$0.00199** |
 
-* Code formatting (Black)
-* Linting (Flake8)
-* Unit testing (Pytest)
-* Build verification
+## Benchmark Summary
 
-This ensures every change is validated before deployment.
+- Prompt reduced from **88,261 → 398 tokens**
+- **99.55%** token reduction
+- Over **99% reduction** in estimated API cost
+- Lower Time-To-First-Token (TTFT)
+- Prevents context window overflow
+- Reduces "Lost in the Middle" degradation
+- Maintains response quality using retrieval filtering
 
 ---
 
-# 📉 Token Optimization Results
+# 📸 Optimization Benchmark
 
-The optimization module combines **Top-K Retrieval Filtering** with **Windowed Context** to dramatically reduce unnecessary prompt tokens.
+The benchmark below shows the optimization module executing against a representative workload.
 
-| Metric             | Before          | After               |
-| ------------------ | --------------- | ------------------- |
-| Context Size       | ~100,000 Tokens | ~400 Tokens         |
-| Reduction          | —               | **99.5%**           |
-| Estimated API Cost | ~$0.50/request  | **< $0.01/request** |
-
-### Benefits
-
-* Lower inference cost
-* Reduced latency
-* Prevents context-window overflow
-* Mitigates "Lost in the Middle" degradation
-* Improves response consistency
+<p align="center">
+<img src="screenshots/optimization.png" width="900">
+</p>
 
 ---
 
 # 🛡️ Fault Tolerance
 
-The pipeline is designed to recover automatically from common LLM failures.
+The pipeline automatically recovers from common LLM failures.
 
-Supported recovery scenarios include:
+Supported scenarios include:
 
-* Malformed JSON
-* Missing schema fields
-* Invalid response format
-* Temporary API failures
-* Request timeouts
-* Rate limiting (retry strategy)
+- Malformed JSON
+- Missing schema fields
+- Invalid response format
+- Temporary API failures
+- Request timeouts
+- Rate limiting
+- Retry with exponential backoff
 
-Recovery workflow:
+## Recovery Flow
 
-1. Planner Agent requests an LLM response.
-2. Validator Agent verifies the schema.
-3. Invalid responses trigger a retry.
-4. Exponential backoff delays subsequent attempts.
-5. Valid JSON is returned to the client.
+1. Planner Agent sends a request to the LLM.
+2. Validator Agent checks schema compliance.
+3. Invalid responses trigger automatic retries.
+4. Exponential backoff delays retry attempts.
+5. Valid structured output is returned.
+
+---
+
+# 🚀 Continuous Integration
+
+Every push to the **main** branch automatically triggers GitHub Actions.
+
+The workflow performs:
+
+- Code formatting (Black)
+- Linting (Flake8)
+- Unit Testing (Pytest)
+- Build Verification
+
+This ensures every commit maintains production quality.
 
 ---
 
 # 📦 Tech Stack
 
-| Category   | Technologies   |
-| ---------- | -------------- |
-| Language   | Python         |
-| API        | FastAPI        |
-| LLM        | OpenAI / Groq  |
-| Testing    | Pytest         |
-| CI/CD      | GitHub Actions |
-| Formatting | Black          |
-| Linting    | Flake8         |
-| Logging    | Python Logging |
-| Deployment | Render         |
+| Category | Technology |
+|-----------|------------|
+| Language | Python 3.11 |
+| API | FastAPI |
+| LLM | OpenAI / Groq |
+| Validation | JSON Schema |
+| Testing | Pytest |
+| CI/CD | GitHub Actions |
+| Formatting | Black |
+| Linting | Flake8 |
+| Logging | Python Logging |
+| Deployment | Render |
 
 ---
 
-# 📈 Future Improvements
+# 📊 Performance Highlights
 
-* Async LLM requests using `httpx`
-* Pydantic-based response models
-* Docker containerization
-* Redis caching for repeated prompts
-* Observability with Prometheus & Grafana
-* Distributed tracing with OpenTelemetry
-* LangGraph or CrewAI orchestration
-* Kubernetes deployment
-* Centralized logging using ELK or Datadog
+- **88,261 → 398 prompt tokens**
+- **99.55% token reduction**
+- **Over 99% cost savings**
+- Automatic schema validation
+- Self-healing retry mechanism
+- FastAPI deployment
+- GitHub Actions CI/CD
+- Production-style logging
+- REST API with Swagger UI
+
+---
+
+# 🔮 Future Improvements
+
+- Async LLM requests using httpx
+- Pydantic response models
+- Docker containerization
+- Redis prompt caching
+- Prometheus metrics
+- Grafana dashboards
+- OpenTelemetry tracing
+- LangGraph orchestration
+- CrewAI integration
+- Kubernetes deployment
+- ELK Stack logging
+- Datadog monitoring
 
 ---
 
@@ -297,9 +366,9 @@ Contributions are welcome.
 2. Create a feature branch
 3. Commit your changes
 4. Open a Pull Request
-   
+
 ---
 
-# ⭐ If you found this project useful
+# ⭐ Support
 
-Consider giving the repository a ⭐ to support the project and help others discover it.
+If you found this project useful, consider giving it a **⭐** on GitHub.
