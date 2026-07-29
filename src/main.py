@@ -3,7 +3,9 @@ from pydantic import BaseModel
 from src.agents.planner import PlannerAgent
 from src.utils.logger import setup_logger
 from fastapi.responses import HTMLResponse
+from datetime import datetime
 from pathlib import Path
+from fastapi.responses import HTMLResponse, PlainTextResponse
 
 logger = setup_logger("API")
 app = FastAPI(title="AI Agent Pipeline API")
@@ -24,6 +26,17 @@ async def root():
 
 
 # --------------------------
+@app.get("/logs", response_class=PlainTextResponse)
+async def view_logs():
+    """Endpoint to view the live production logs."""
+    # Dynamically generate today's filename to match setup_logger
+    current_date = datetime.now().strftime("%Y%m%d")
+    log_filename = f"logs/workflow_{current_date}.log"
+    log_path = Path(log_filename)
+
+    if log_path.exists():
+        return log_path.read_text(encoding="utf-8")
+    return f"No logs found yet at {log_filename}. Try running a demo first!"
 
 
 @app.post("/api/v1/plan")
