@@ -1,12 +1,10 @@
 import os
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
 from src.agents.planner import PlannerAgent
 from src.utils.logger import setup_logger
-from fastapi.responses import HTMLResponse
-from datetime import datetime
-from pathlib import Path
-from fastapi.responses import HTMLResponse, PlainTextResponse
 
 logger = setup_logger("API")
 app = FastAPI(title="AI Agent Pipeline API")
