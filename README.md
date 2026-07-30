@@ -127,7 +127,7 @@ ai_agent_pipeline/
 │
 ├── screenshots/
 │   ├── dashboard.png
-│   └── optimization-results.png
+│   └── optimization.png
 │
 ├── .github/
 │   └── workflows/
@@ -137,17 +137,15 @@ ai_agent_pipeline/
 │   ├── agents/
 │   │   ├── planner.py
 │   │   └── validator.py
+|   |   └── base_agent.py
 │   │
 │   ├── core/
 │   │   ├── config.py
-│   │   └── llm.py
+│   │   └── llm_client.py
 │   │
 │   ├── optimization/
-│   │   ├── token_counter.py
-│   │   ├── retrieval_filter.py
-│   │   ├── context_window.py
 │   │   └── token_manager.py
-│   │
+│   │   
 │   ├── utils/
 │   │   ├── logger.py
 │   │   └── tokenizer.py
